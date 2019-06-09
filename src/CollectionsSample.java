@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class CollectionsSample extends JFrame {
     private JPanel jpBottomMenu;
@@ -103,6 +104,10 @@ public class CollectionsSample extends JFrame {
         while (iterator.hasNext()) System.out.print(iterator.next() + "; ");
         System.out.println();
         for(Box box : list) System.out.print(box + "; ");
+        System.out.println();
+        String[] arrayString = {"one", "two", "three"};
+        List<String> list2 = Arrays.asList(arrayString);
+        System.out.println(list2);
     }
 
     private void demoLinkedList(){
