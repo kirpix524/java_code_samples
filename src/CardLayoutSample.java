@@ -8,7 +8,7 @@ public class CardLayoutSample extends JFrame {
 
     public CardLayoutSample() {
         setTitle("CardLayout sample");
-        setBounds(300, 300, 1000, 400);
+        setBounds(100, 100, 1000, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
@@ -28,6 +28,7 @@ public class CardLayoutSample extends JFrame {
         //
         JPanel jpSecondMenu = getSecondMenu();
         jpBottomMenu.add(jpSecondMenu, "jpSecondMenu");
+        ((CardLayout) jpBottomMenu.getLayout()).show(jpBottomMenu, "jpMainMenu");
     }
 
     private JPanel getBottomMenu() {
@@ -39,25 +40,25 @@ public class CardLayoutSample extends JFrame {
     private JPanel getMainMenu() {
         JPanel jpMainMenu = new JPanel(new GridLayout());
         //Button start learning
-        JButton jbStartLearning = new JButton("Menu 1");
-        jbStartLearning.addActionListener(e -> {
+        JButton jbButton1 = new JButton("Menu 1");
+        jbButton1.addActionListener(e -> {
             //
             ((CardLayout) jpBottomMenu.getLayout()).show(jpBottomMenu, "jpFirstMenu");
         });
-        jpMainMenu.add(jbStartLearning);
+        jpMainMenu.add(jbButton1);
         //Button start repeating
-        JButton jbStartRepeating = new JButton("Menu 2");
-        jbStartRepeating.addActionListener(e -> {
+        JButton jbButton2 = new JButton("Menu 2");
+        jbButton2.addActionListener(e -> {
             //
             ((CardLayout) jpBottomMenu.getLayout()).show(jpBottomMenu, "jpSecondMenu");
         });
-        jpMainMenu.add(jbStartRepeating);
+        jpMainMenu.add(jbButton2);
         //Button Exit
-        JButton jbExitToMainMenu = new JButton("Exit");
-        jbExitToMainMenu.addActionListener(e -> {
+        JButton jbExit = new JButton("Exit");
+        jbExit.addActionListener(e -> {
             System.exit(0);
         });
-        jpMainMenu.add(jbExitToMainMenu);
+        jpMainMenu.add(jbExit);
         return jpMainMenu;
     }
 
