@@ -8,7 +8,8 @@ public class ClassMain {
 //                CardLayoutSample w = new CardLayoutSample();
 //              CollectionsSample w = new CollectionsSample();
 //              JTextAreaSample w = new JTextAreaSample();
-                ThreadSamples w = new ThreadSamples();
+//                ThreadSamples w = new ThreadSamples();
+                NetSample w = new NetSample();
             }
         });
     }
