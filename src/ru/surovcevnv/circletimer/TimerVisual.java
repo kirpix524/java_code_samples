@@ -1,20 +1,86 @@
+package ru.surovcevnv.circletimer;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
-/*Sample of using CardLayout, JButton, JPanel, JOptionPane*/
+public class TimerVisual extends JFrame{
 
-public class CardLayoutSample extends JFrame {
+    private class EventGenerator extends Thread {
+        JFrame form;
+        EventGenerator(JFrame form) {
+            this.form = form;
+            start();
+        }
+
+        @Override
+        public void run() {
+            while (!isInterrupted()) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        form.repaint();
+                    }
+                });
+                try {
+                    sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+    private ArrayList<CircleTimer> elements;
     private JPanel jpBottomMenu;
 
-    public CardLayoutSample() {
-        setTitle("CardLayout sample");
+    public TimerVisual() {
+        setTitle("TimerVisual");
         setBounds(100, 100, 1000, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
         //
         initMenus();
+
+        new EventGenerator(this);
+
+        elements = new ArrayList<>();
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton()==MouseEvent.BUTTON1) {
+                    elements.add(new CircleTimer(e.getX(), e.getY(), 50,50, 60000, new Color(0,150,0)));
+                    elements.get(elements.size()-1).start();
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
+
+//    region menus
 
     private void initMenus() {
         jpBottomMenu = getBottomMenu();
@@ -123,5 +189,15 @@ public class CardLayoutSample extends JFrame {
         });
         jpSecondMenu.add(jbButtonBack);
         return jpSecondMenu;
+    }
+//  endregion
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        for (int i=0; i<elements.size(); i++) {
+            elements.get(i).draw(g);
+//            System.out.println("element "+i+": "+elements.get(i).getInfo());
+        }
     }
 }

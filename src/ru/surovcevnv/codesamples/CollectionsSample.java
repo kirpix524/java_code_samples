@@ -1,3 +1,5 @@
+package ru.surovcevnv.codesamples;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;

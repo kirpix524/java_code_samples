@@ -1,9 +1,16 @@
+package ru.surovcevnv.codesamples;
+
+import com.mysql.cj.jdbc.JdbcStatement;
+
 import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.JDBCType;
+import java.util.ArrayList;
 
 public class NetSample extends JFrame {
+
     public NetSample() {
         setTitle("Net sample");
         setBounds(100, 100, 1000, 400);
@@ -11,7 +18,6 @@ public class NetSample extends JFrame {
         setResizable(false);
         setVisible(true);
 
-//        Vector - потокобезопасный массив
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -31,6 +37,7 @@ public class NetSample extends JFrame {
                 ServerSocket serverSocket = new ServerSocket(8888);
                 Socket socket = serverSocket.accept()
             ) {
+            serverSocket.setSoTimeout(3000);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             String b = in.readUTF();

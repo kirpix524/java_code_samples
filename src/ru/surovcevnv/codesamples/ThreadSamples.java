@@ -1,3 +1,5 @@
+package ru.surovcevnv.codesamples;
+
 import javax.swing.*;
 
 import static java.lang.Thread.sleep;
@@ -27,7 +29,7 @@ public class ThreadSamples extends JFrame {
     }
 
     public ThreadSamples() {
-        setTitle("ThreadSamples");
+        setTitle("ru.surovcevnv.codesamples.ThreadSamples");
         setBounds(100, 100, 1000, 500);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
